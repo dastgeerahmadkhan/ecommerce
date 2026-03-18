@@ -8,7 +8,7 @@ stage('Clone Repo') {
 
 steps {
 
-git 'https://github.com/username/django-ecommerce.git'
+git 'https://github.com/dastgeerahmadkhan/ecommerce.git'
 
 }
 
