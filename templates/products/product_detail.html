@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="grid grid-cols-2 gap-10">
+
+<img src="{{product.image.url}}">
+
+<div>
+
+<h1 class="text-3xl">{{product.name}}</h1>
+
+<p class="text-xl">${{product.price}}</p>
+
+<p class="mt-4">{{product.description}}</p>
+
+{% if user.is_authenticated %}
+
+<a href="{% url 'add_to_cart' product.id %}"
+class="bg-black text-white p-3 mt-4 inline-block">
+
+Add To Cart
+
+</a>
+
+{% else %}
+
+<a href="{% url 'login' %}?next={% url 'add_to_cart' product.id %}"
+class="bg-black text-white p-3 mt-4 inline-block">
+
+Login To Order
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

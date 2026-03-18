@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Fashion Store</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- NAVBAR -->
+
+<nav class="bg-black text-white">
+
+<div class="container mx-auto flex justify-between items-center p-4">
+
+<a href="/" class="text-xl font-bold">Fashion Store</a>
+
+<!-- Categories -->
+
+<ul class="flex gap-6">
+
+{% for category in categories %}
+
+<li>
+<a href="/category/{{category.id}}/" class="hover:text-gray-300">
+{{category.name}}
+</a>
+</li>
+
+{% endfor %}
+
+</ul>
+
+<!-- Auth Buttons -->
+
+<div class="flex gap-4">
+
+{% if user.is_authenticated %}
+
+<span class="mr-3">Hello {{user.username}}</span>
+
+<form method="POST" action="{% url 'logout' %}">
+{% csrf_token %}
+
+<button class="bg-red-500 px-3 py-1 rounded">
+Logout
+</button>
+
+</form>
+
+{% else %}
+
+<a href="{% url 'login' %}" class="bg-blue-500 px-3 py-1 rounded">
+Login
+</a>
+
+<a href="{% url 'signup' %}" class="bg-green-500 px-3 py-1 rounded">
+Sign Up
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container mx-auto p-6">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+</body>
+</html>
